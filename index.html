@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Compare the best online courses in India. Find top Python, AI, Data Science, and more courses on Udemy, Coursera, Scaler & more — with prices, ratings & affiliate links."/>
+  <title>CourseCompare India — Find Your Perfect Course</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">CourseCompare<span class="logo-accent">India</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="nav-cta" onclick="document.getElementById('search-input').focus()">Find a Course</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">🇮🇳 Made for Indian Students</div>
+      <h1 class="hero-title">Stop Overpaying<br/><span class="gradient-text">for Online Courses</span></h1>
+      <p class="hero-subtitle">Compare prices, ratings & reviews across Udemy, Coursera, Scaler, PW Skills and more — all in one place.</p>
+
+      <div class="search-bar" id="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search Python, AI, Data Science, Web Dev..." autocomplete="off"/>
+        <button class="search-btn" onclick="handleSearch()">Search</button>
+      </div>
+
+      <div class="hero-tags">
+        <span class="tag" onclick="quickSearch('Python')">🐍 Python</span>
+        <span class="tag" onclick="quickSearch('Machine Learning')">🤖 Machine Learning</span>
+        <span class="tag" onclick="quickSearch('Data Science')">📊 Data Science</span>
+        <span class="tag" onclick="quickSearch('Web Development')">🌐 Web Dev</span>
+        <span class="tag" onclick="quickSearch('DSA')">🧠 DSA</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Courses Listed</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Platforms Compared</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">₹0</span><span class="stat-label">Cost to Use</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Browse by Topic</span>
+        <h2>What do you want to learn?</h2>
+      </div>
+      <div class="categories-grid">
+        <div class="cat-card" onclick="filterCategory('Python')">
+          <div class="cat-icon">🐍</div>
+          <div class="cat-name">Python</div>
+          <div class="cat-count">24 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('Data Science')">
+          <div class="cat-icon">📊</div>
+          <div class="cat-name">Data Science</div>
+          <div class="cat-count">18 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('Machine Learning')">
+          <div class="cat-icon">🤖</div>
+          <div class="cat-name">Machine Learning</div>
+          <div class="cat-count">21 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('Web Development')">
+          <div class="cat-icon">🌐</div>
+          <div class="cat-name">Web Development</div>
+          <div class="cat-count">32 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('DSA')">
+          <div class="cat-icon">🧠</div>
+          <div class="cat-name">DSA & CP</div>
+          <div class="cat-count">15 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('Cybersecurity')">
+          <div class="cat-icon">🔐</div>
+          <div class="cat-name">Cybersecurity</div>
+          <div class="cat-count">12 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('Cloud')">
+          <div class="cat-icon">☁️</div>
+          <div class="cat-name">Cloud & DevOps</div>
+          <div class="cat-count">19 courses</div>
+        </div>
+        <div class="cat-card" onclick="filterCategory('AI')">
+          <div class="cat-icon">✨</div>
+          <div class="cat-name">Generative AI</div>
+          <div class="cat-count">16 courses</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section class="courses-section" id="courses">
+    <div class="container">
+      <div class="courses-header">
+        <div class="section-header">
+          <span class="section-tag">All Courses</span>
+          <h2 id="courses-title">Top Picks for Students</h2>
+        </div>
+        <div class="filter-bar">
+          <select id="platform-filter" onchange="applyFilters()">
+            <option value="all">All Platforms</option>
+            <option value="Udemy">Udemy</option>
+            <option value="Coursera">Coursera</option>
+            <option value="Scaler">Scaler</option>
+            <option value="PW Skills">PW Skills</option>
+            <option value="GeeksforGeeks">GeeksforGeeks</option>
+            <option value="Skillshare">Skillshare</option>
+            <option value="W3Schools">W3Schools</option>
+            <option value="Khan Academy">Khan Academy</option>
+            <option value="LinkedIn Learning">LinkedIn Learning</option>
+            <option value="NPTEL">NPTEL</option>
+            <option value="Unacademy">Unacademy</option>
+            <option value="freeCodeCamp">freeCodeCamp</option>
+            <option value="MIT OpenCourseWare">MIT OpenCourseWare</option>
+            <option value="Simplilearn">Simplilearn</option>
+            <option value="Edureka">Edureka</option>
+            <option value="YouTube">YouTube (Free)</option>
+          </select>
+          <select id="sort-filter" onchange="applyFilters()">
+            <option value="rating">Sort: Best Rated</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- COURSE CARDS -->
+      <div class="courses-grid" id="courses-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="no-results" id="no-results" style="display:none;">
+        <div class="no-results-icon">😕</div>
+        <p>No courses found. Try a different search term.</p>
+        <button onclick="resetSearch()">Show All Courses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="compare-section" id="compare">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Side-by-Side</span>
+        <h2 id="compare-heading">Python Courses — Compared</h2>
+        <p class="section-desc" id="compare-subheading">A quick look at the most popular Python courses across platforms.</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Platform</th>
+              <th>Price</th>
+              <th>Rating</th>
+              <th>Duration</th>
+              <th>Best For</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="compare-tbody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why CourseCompare?</span>
+        <h2>The smartest way to spend on learning</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">💸</div>
+          <h3>Save Money</h3>
+          <p>We track prices so you never overpay. Some courses go from ₹3,499 to ₹499 on sale.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <h3>Save Time</h3>
+          <p>Instead of opening 10 tabs, compare all platforms here in under 2 minutes.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🎯</div>
+          <h3>Student-Focused</h3>
+          <p>Built by a BTech student, for students. We know what matters — quality + budget.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🌟</div>
+          <h3>Honest Reviews</h3>
+          <p>Ratings pulled from real platforms. No fake 5-star spam. Just real data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container about-inner">
+      <div class="about-text">
+        <span class="section-tag">About This Site</span>
+        <h2>Built by a student, for students</h2>
+        <p>I'm a 1st year BTech CSE student who was tired of spending hours comparing courses across Udemy, Coursera, Scaler, and PW Skills. So I built CourseCompare India.</p>
+        <p>This site earns a small affiliate commission when you buy a course through our links — at <strong>no extra cost to you</strong>. It helps me keep this site free and updated.</p>
+        <p>My goal: help every Indian student find the best course at the best price.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🎓</div>
+        <h3>Affiliate Disclosure</h3>
+        <p>We earn a small commission from affiliate links on this page. This helps us keep the site free. Prices are the same for you — or sometimes even lower with our discount links!</p>
+        <div class="about-badges">
+          <span class="badge">Udemy Partner</span>
+          <span class="badge">Coursera Affiliate</span>
+          <span class="badge">Impact Network</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">CourseCompare<span class="logo-accent">India</span></span>
+        </div>
+        <p>The #1 course comparison site for Indian students.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#courses">All Courses</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#compare">Compare Table</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Top Searches</h4>
+        <ul>
+          <li><a href="#" onclick="quickSearch('Python')">Best Python Courses</a></li>
+          <li><a href="#" onclick="quickSearch('Data Science')">Best Data Science Courses</a></li>
+          <li><a href="#" onclick="quickSearch('Machine Learning')">Best ML Courses</a></li>
+          <li><a href="#" onclick="quickSearch('DSA')">Best DSA Courses</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CourseCompare India. Built with ❤️ by a BTech CSE Student. | Affiliate links may earn commission.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
